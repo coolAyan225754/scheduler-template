@@ -110,7 +110,7 @@ $(document).ready(function () {
                         $('#scheduleLabel').show();
                         $('#addHour').jqxButton({ theme: theme, disabled: true });
                         $('#addMinutes').jqxButton({ theme: theme, disabled: true });
-                        $('#clearLabel').jqxButton({ theme: theme });
+                        $('#clearLabel').jqxButton({ theme: theme });                       
                     }
                     else {
                         $('#hour').hide();
@@ -119,39 +119,42 @@ $(document).ready(function () {
                     }
                     if (value == "Hourly") {
                         var j = 0;
-                        fields.yearly.panel.hide();                       
+                        fields.yearly.panel.hide();
                         var hourlyField = ""
                         hourlyField += "<div id='hourly'>"
                         hourlyField += "<div class='jqx-scheduler-edit-dialog-label jqx-scheduler-edit-dialog-label-material'>Repeat Every</div>"
-                        hourlyField += "<div class='jqx-scheduler-edit-dialog-field jqx-scheduler-edit-dialog-field-material'><div style='float: left; width: 48px; height: 23px;' role='spinbutton' data-role='input' aria-valuenow='1' aria-valuemin='1' aria-valuemax='99999999' aria-disabled='false' aria-multiline='false' class='jqx-input jqx-input-material jqx-rc-all jqx-rc-all-material jqx-widget jqx-widget-material jqx-widget-content jqx-widget-content-material jqx-numberinput jqx-numberinput-material' hint='true'><input autocomplete='off' style='border: 0px none; position: relative; float: left; padding: 3px 0px; text-align: right; height: 18px; width: 26px; margin-right: 2px;' type='textarea' class='jqx-input-content jqx-input-content-material jqx-widget-content jqx-widget-content-material'><span class='jqx-input-bar jqx-input-bar-material' style='top: 23px;'></span><label class='jqx-input-label jqx-input-label-material'></label><div style='float: right; height: 100%; overflow: hidden; position: relative; border-width: 0px 0px 0px 1px; width: 18px;' class='jqx-input jqx-input-material jqx-rc-r jqx-rc-r-material'><div style='overflow: hidden; padding: 0px; margin-left: -1px; position: relative; border-width: 0px; width: 20px; height: 50%;'  role='button' aria-disabled='false' class='jqx-fill-state-normal jqx-fill-state-normal-material jqx-action-button jqx-action-button-material jqx-rc-tr jqx-rc-tr-material'><div class='jqx-icon-arrow-up jqx-icon-arrow-up-material jqx-input-icon jqx-input-icon-material' style='height: 100%;'></div></div><div style='overflow: hidden; padding: 0px; margin-left: -1px; position: relative; border-width: 0px; width: 20px; height: 50%;' role='button' aria-disabled='false' class='jqx-fill-state-normal jqx-fill-state-normal-material jqx-action-button jqx-action-button-material jqx-rc-br jqx-rc-br-material'><div class='jqx-icon-arrow-down jqx-icon-arrow-down-material jqx-input-icon jqx-input-icon-material' style='height: 100%;'></div></div></div></div><div style='float: left; margin-left: 5px; line-height:25px;'>hour(s)</div></div>"
-
-
-                        $('#dialogscheduler').children('div').each(function () { // Loop trough the div's (only first level childs) elements in dialogscheduler
+                        hourlyField += "<div class='jqx-scheduler-edit-dialog-field jqx-scheduler-edit-dialog-field-material'><div id='hourlyField' style='float: left; width: 48px; height: 23px;'></div> <div style='float: left; margin-left: 5px; line-height:25px;'>hour(s)</div></div>"
+                        $("#minField").hide();
+                        $('#dialogscheduler').children('div').each(function () {//Loop trough the div's (only first level childs) elements in dialogscheduler
                             j += 1;
                             if (j == 7) { // places the field in the third position.
                                 $(this).after(hourlyField);
-
-
                             };
                         });
+
+                        $("#hourlyField").jqxNumberInput({ theme: theme, height: '23px', width: '48px', spinButtons: true, inputMode: 'simple', min: 1, max: 99999, decimalDigits: 0 });
+                        $('#hourlyField').val(1);
                     }
 
-                    if (value == "Minutes") {
-                        var k = 0;                                           
-                        var minField=  "";
+                    else if (value == "Minutes") {
+                        var k = 0;
+                        var minField = "";
                         minField += "<div id='minField'>"
                         minField += "<div class='jqx-scheduler-edit-dialog-label jqx-scheduler-edit-dialog-label-material'>Repeat Every</div>"
-                        minField += "<div class='jqx-scheduler-edit-dialog-field jqx-scheduler-edit-dialog-field-material'><div style='float: left; width: 48px; height: 23px;' role='spinbutton' data-role='input' aria-valuenow='1' aria-valuemin='1' aria-valuemax='99999999' aria-disabled='false' aria-multiline='false' class='jqx-input jqx-input-material jqx-rc-all jqx-rc-all-material jqx-widget jqx-widget-material jqx-widget-content jqx-widget-content-material jqx-numberinput jqx-numberinput-material' hint='true'><input autocomplete='off' style='border: 0px none; position: relative; float: left; padding: 3px 0px; text-align: right; height: 18px; width: 26px; margin-right: 2px;' type='textarea' class='jqx-input-content jqx-input-content-material jqx-widget-content jqx-widget-content-material'><span class='jqx-input-bar jqx-input-bar-material' style='top: 23px;'></span><label class='jqx-input-label jqx-input-label-material'></label><div style='float: right; height: 100%; overflow: hidden; position: relative; border-width: 0px 0px 0px 1px; width: 18px;' class='jqx-input jqx-input-material jqx-rc-r jqx-rc-r-material'><div style='overflow: hidden; padding: 0px; margin-left: -1px; position: relative; border-width: 0px; width: 20px; height: 50%;'  role='button' aria-disabled='false' class='jqx-fill-state-normal jqx-fill-state-normal-material jqx-action-button jqx-action-button-material jqx-rc-tr jqx-rc-tr-material'><div class='jqx-icon-arrow-up jqx-icon-arrow-up-material jqx-input-icon jqx-input-icon-material' style='height: 100%;'></div></div><div style='overflow: hidden; padding: 0px; margin-left: -1px; position: relative; border-width: 0px; width: 20px; height: 50%;' role='button' aria-disabled='false' class='jqx-fill-state-normal jqx-fill-state-normal-material jqx-action-button jqx-action-button-material jqx-rc-br jqx-rc-br-material'><div class='jqx-icon-arrow-down jqx-icon-arrow-down-material jqx-input-icon jqx-input-icon-material' style='height: 100%;'></div></div></div></div><div style='float: left; margin-left: 5px; line-height:25px;'>minutey(s)</div></div>"
-
-
+                        minField += "<div class='jqx-scheduler-edit-dialog-field jqx-scheduler-edit-dialog-field-material'><div id='minuteField' style='float: left; width: 48px; height: 23px;'></div> <div style='float: left; margin-left: 5px; line-height:25px;'>minute(s)</div></div>"
+                        $("#hourly").hide();
                         $('#dialogscheduler').children('div').each(function () { // Loop trough the div's (only first level childs) elements in dialogscheduler
-                            k+= 1;
-                            if (k == 7) { // places the field in the third position.
+                            k += 1;
+                            if (k == 7) { 
                                 $(this).after(minField);
-
-
                             };
                         });
+                        $("#minuteField").jqxNumberInput({ theme: theme, height: '23px', width: '48px', spinButtons: true, inputMode: 'simple', min: 1, max: 99999, decimalDigits: 0 });
+                        $('#minuteField').val(1);
+                    }
+                    else{
+                        $("#minField").hide();
+                        $("#hourly").hide();
                     }
                 }
             });
@@ -225,6 +228,8 @@ $(document).ready(function () {
             recurrenceObject.SELECTED_HOUR = hourList;
             recurrenceObject.SELECTED_MINUTE = minuteList;
             myObject.DAILY_SETTING = recurrenceObject;
+            myObject.WEEKLY_SETTING = [];
+            myObject.MONTHLY_SETTING = [];
         }
         if (myObject.FREQUENCY === 'weekly') {
             myObject.WEEKLY_SETTING = [];
@@ -238,6 +243,7 @@ $(document).ready(function () {
             recurrenceObject.SELECTED_HOUR = hourList;
             recurrenceObject.SELECTED_MINUTE = minuteList;
             myObject.DAILY_SETTING = recurrenceObject;
+            myObject.MONTHLY_SETTING = [];
         }
         if (myObject.FREQUENCY === 'monthly') {
             myObject.MONTHLY_SETTING = [];
@@ -259,11 +265,10 @@ $(document).ready(function () {
             recurrenceObject.SELECTED_HOUR = hourList;
             recurrenceObject.SELECTED_MINUTE = minuteList;
             myObject.DAILY_SETTING = recurrenceObject;
+            myObject.WEEKLY_SETTING = [];
         }
         var jsonOutput = JSON.stringify(myObject);
         console.log(jsonOutput);
-
-
     });
     $('#addHour').on('click', function () {
         var hour = $('#dialogscheduler > div').find('#hour').val();
